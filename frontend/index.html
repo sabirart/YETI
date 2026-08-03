@@ -1,0 +1,242 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
+  <title>YETI</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='black'/%3E%3Ctext x='50' y='68' font-family='Arial' font-size='50' font-weight='bold' fill='white' text-anchor='middle'%3EY%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="offline-banner" id="offlineBanner">You're offline - downloads are paused</div>
+
+  <div class="app">
+    <div class="fixed-top">
+      <div class="header">
+        <h1>YETI<span>dl</span></h1>
+        <div class="top-icons">
+          <button id="themeBtn" class="icon-btn" title="toggle theme" aria-label="Toggle theme">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"/>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+          </button>
+          <button id="aboutBtn" class="icon-btn" title="About" style="font-size:1.2rem; font-weight:600;">?</button>
+        </div>
+      </div>
+
+      <div class="url-area">
+        <div class="input-wrapper">
+          <input type="url" id="urlInput" placeholder="paste any video URL" aria-label="Video URL" autocomplete="off">
+          <button id="pasteBtn" class="paste-icon" title="Paste from clipboard" aria-label="Paste from clipboard">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </button>
+        </div>
+        <select id="qualitySelect" aria-label="Quality">
+          <option value="144">144p</option>
+          <option value="240">240p</option>
+          <option value="360">360p</option>
+          <option value="480">480p</option>
+          <option value="720" selected>720p</option>
+          <option value="1080">1080p</option>
+          <option value="1440">2K (1440p)</option>
+          <option value="2160">4K (2160p)</option>
+          <option value="audio">audio</option>
+        </select>
+        <button class="btn btn-add" id="addBtn">Download</button>
+      </div>
+
+      <div class="info-row" id="infoRow">
+        <span class="video-title" id="videoTitle"></span>
+        <span class="file-size" id="fileSize"></span>
+      </div>
+
+      <!-- Progress bar - overlays the info-row bottom border -->
+      <div class="progress-line-container">
+        <div class="progress-line-track">
+          <div class="progress-line-fill" id="progressLineFill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <div class="queue-header">
+        <span>#</span>
+        <span>file</span>
+        <span>progress</span>
+        <span>actions</span>
+      </div>
+    </div>
+
+    <div class="queue-scroll" id="queueScroll">
+      <div id="queueContainer"></div>
+    </div>
+
+    <div class="footer-note">Queue clears on refresh</div>
+  </div>
+
+  <!-- About Overlay -->
+  <div class="about-overlay" id="aboutOverlay">
+    <div class="about-card">
+      <!-- Topbar Navigation -->
+      <div class="about-topbar">
+        <div class="about-tabs">
+          <button class="about-tab active" data-tab="about">About</button>
+          <button class="about-tab" data-tab="howto">How to Use</button>
+          <button class="about-tab" data-tab="settings">Settings</button>
+          <button class="about-tab" data-tab="contact">Contact</button>
+        </div>
+        <button class="about-close" id="closeAbout">×</button>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="about-content">
+        <!-- About Tab -->
+        <div class="about-panel active" id="panel-about">
+          <div class="about-grid">
+            <div class="about-left">
+              <h2>YETI</h2>
+              <p class="about-tagline">YouTube Video Downloader</p>
+              <p>Paste URL, select quality, add to queue.<br>Redownload, Remove, or Open folder.</p>
+              <p class="about-note">Queue is temporary, clears on refresh.</p>
+            </div>
+            <div class="about-divider"></div>
+            <div class="about-right">
+              <h3>Browser Extension</h3>
+              <p class="ext-desc">Download with one click directly from YouTube.</p>
+              <div class="extension-buttons">
+                <button class="ext-btn" id="downloadExtZip" title="Download">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                  Download YETI Extension
+                </button>
+              </div>
+              <div class="extension-guide">
+                <p><strong>Installation Guide</strong></p>
+                <ol>
+                  <li>Download &amp; extract the extension folder</li>
+                  <li>Go to <code>chrome://extensions/</code> (Chrome) or <code>about:addons</code> (Firefox)</li>
+                  <li>Enable <strong>Developer Mode</strong></li>
+                  <li>Click <strong>"Load unpacked"</strong> and select the folder</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- How to Use Tab -->
+        <div class="about-panel" id="panel-howto">
+          <h2>How to Use YETI</h2>
+          <div class="howto-steps">
+            <div class="howto-step">
+              <span class="step-number">1</span>
+              <div class="step-content">
+                <h4>Paste a YouTube URL</h4>
+                <p>Copy any YouTube video URL and paste it into the input field at the top.</p>
+              </div>
+            </div>
+            <div class="howto-step">
+              <span class="step-number">2</span>
+              <div class="step-content">
+                <h4>Select Quality</h4>
+                <p>Choose your preferred video quality from the dropdown menu (144p to 4K) or select "audio" for MP3.</p>
+              </div>
+            </div>
+            <div class="howto-step">
+              <span class="step-number">3</span>
+              <div class="step-content">
+                <h4>Add to Queue</h4>
+                <p>Click the "Download" button or press Enter to add the video to your download queue.</p>
+              </div>
+            </div>
+            <div class="howto-step">
+              <span class="step-number">4</span>
+              <div class="step-content">
+                <h4>Manage Downloads</h4>
+                <p>Use the action buttons to redownload, open the folder, or remove items from the queue.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div class="about-panel" id="panel-settings">
+          <h2>Settings</h2>
+          <div class="settings-group">
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-label">Theme</span>
+                <span class="setting-desc">Toggle between dark and light mode</span>
+              </div>
+              <button class="setting-toggle" id="settingsThemeBtn">Toggle Theme</button>
+            </div>
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-label">Downloads Folder</span>
+                <span class="setting-desc">Open the downloads directory</span>
+              </div>
+              <button class="setting-btn" id="settingsFolderBtn">Open Folder</button>
+            </div>
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-label">Clear Queue</span>
+                <span class="setting-desc">Remove all items from the download queue</span>
+              </div>
+              <button class="setting-btn danger" id="settingsClearBtn">Clear All</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Tab -->
+        <div class="about-panel" id="panel-contact">
+          <h2>Contact</h2>
+          <div class="contact-info">
+            <div class="developer-info">
+              <p class="dev-name">Sabir Hussain</p>
+              <p class="dev-role">Developer &amp; Creator</p>
+              <div class="dev-contact">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <path d="M22 7l-10 7L2 7"/>
+                </svg>
+                <a href="mailto:sabirhussian0166@gmail.com">sabirhussian0166@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-links">
+              <p class="contact-note">For issues, feedback, or feature requests, please reach out via email.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Left and Right Ad (Commented out by default) -->
+  <!-- 
+  <div class="ad-side ad-left">
+    <a href="#" target="_blank">
+      <img src="https://media.giphy.com/media/3o7abldj0b3rxrCUfe/giphy.gif" alt="Ad">
+    </a>
+  </div>
+  
+  <div class="ad-side ad-right">
+    <a href="#" target="_blank">
+      <img src="https://media.giphy.com/media/3o7abldj0b3rxrCUfe/giphy.gif" alt="Ad">
+    </a>
+  </div>
+  -->
+
+  <script src="js/main.js"></script>
+  <script src="js/extension.js"></script>
+  <script src="js/overlay.js"></script>
+  <script src="js/loading-progress.js"></script>
+
+</body>
+</html>

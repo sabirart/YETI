@@ -1,0 +1,139 @@
+@media (max-width: 768px) {
+  .app { padding: 1rem 1rem 0.6rem 1rem; }
+  .header h1 { font-size: 1.3rem; }
+  .queue-header, .queue-item {
+    grid-template-columns: 30px 1fr 1fr 80px;
+    gap: .3rem; font-size: .75rem;
+  }
+  .queue-item .actions { gap: .5rem; }
+  .input-wrapper input { height: 38px; font-size: .9rem; }
+  .url-area select {
+    height: 38px; font-size: .8rem;
+    min-width: 70px; padding: .2rem 1.4rem .2rem .5rem;
+  }
+  .btn { height: 38px; font-size: .85rem; padding: .4rem 1rem; }
+  .btn-add { min-width: 60px; }
+  .top-icons .icon-btn svg { width: 18px; height: 18px; }
+  .video-title { font-size: .8rem; }
+  .file-size { font-size: .8rem; min-width: 50px; }
+  :root { --icon-size: 16px; }
+  .paste-icon svg { width: 16px; height: 16px; }
+  
+  /* About overlay - full screen mobile */
+  .about-overlay {
+    padding: 0 !important;
+    background: var(--bg-primary) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .about-card {
+    max-height: 100vh !important;
+    height: 100vh !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    border-radius: 0 !important;
+    border: none !important;
+    background: var(--bg-primary) !important;
+    padding: 0 !important;
+  }
+  .about-topbar {
+    padding: 1.4rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .about-tabs { flex: 1; }
+  .about-tab { font-size: 0.7rem; padding: 0.3rem 0.6rem; }
+  .about-content { padding: 0.8rem 1rem 1rem 1rem; }
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .about-divider { display: none; }
+}
+
+@media (max-width: 480px) {
+  .app { padding: .6rem .6rem .4rem .6rem; }
+  .header h1 { font-size: 1.1rem; }
+  .header { padding-bottom: .4rem; margin-bottom: .5rem; }
+  .queue-header, .queue-item {
+    grid-template-columns: 24px minmax(60px,1fr) minmax(80px,1fr) 60px;
+    gap: .2rem; font-size: .65rem;
+  }
+  .queue-item { padding: .35rem 0; }
+  .queue-item .actions { gap: .3rem; }
+  .queue-item .filename { min-width: 40px; }
+  .url-area { gap: .3rem; flex-wrap: wrap; }
+  .input-wrapper { flex: 1 1 100%; order: 1; }
+  .input-wrapper input {
+    padding: .4rem 2.4rem .4rem .6rem;
+    font-size: .85rem;
+    height: 36px;
+  }
+  .url-area select {
+    height: 34px; font-size: .8rem;
+    min-width: 60px; padding: .2rem 1.4rem .2rem .5rem;
+    order: 2; flex: 1;
+  }
+  .btn {
+    padding: .4rem .8rem; font-size: .8rem;
+    height: 36px; min-width: 50px; order: 3;
+  }
+  .info-row { min-height: 28px; padding: .2rem 0; margin: .1rem 0 .4rem; }
+  .video-title { font-size: .75rem; min-width: 40px; }
+  .file-size { font-size: .75rem; min-width: 45px; flex-shrink: 0; }
+  .queue-header { font-size: .6rem; padding-bottom: .2rem; }
+  .progress-text { font-size: .55rem; flex-wrap: nowrap; gap: .15rem; }
+  .progress-text .progress-left { min-width: 30px; flex-shrink: 0; }
+  .progress-text .progress-center { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .progress-text .progress-right { min-width: 30px; flex-shrink: 0; text-align: right; }
+  .empty-queue { font-size: .85rem; min-height: 80px; padding: 1.5rem 0; }
+  .footer-note { font-size: .6rem; padding-top: .3rem; }
+  .top-icons .icon-btn svg { width: 16px; height: 16px; }
+  .top-icons { gap: .8rem; }
+  :root { --icon-size: 14px; }
+  .paste-icon svg { width: 14px; height: 14px; }
+  
+  /* About overlay - full screen mobile */
+  .about-overlay {
+    padding: 0 !important;
+    background: var(--bg-primary) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .about-card {
+    max-height: 100vh !important;
+    height: 100vh !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    border-radius: 0 !important;
+    border: none !important;
+    background: var(--bg-primary) !important;
+    padding: 0 !important;
+  }
+  .about-topbar {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.6rem 0.8rem 0.5rem 0.8rem;
+  }
+  .about-tabs {
+    flex: 1;
+    gap: 0.15rem;
+  }
+  .about-tab {
+    font-size: 0.65rem;
+    padding: 0.25rem 0.5rem;
+  }
+  .about-close { font-size: 1.2rem; }
+  .about-content { padding: 0.6rem 0.8rem 0.8rem 0.8rem; }
+  .about-card h2 { font-size: 1.2rem; }
+  .about-card p { font-size: .8rem; }
+  .setting-item {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .setting-toggle,
+  .setting-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

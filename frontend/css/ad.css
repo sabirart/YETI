@@ -1,0 +1,32 @@
+/* --- Vertical Ads (Desktop only) --- */
+.ad-side {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10vw;
+  max-width: 140px;
+  min-width: 80px;
+  z-index: 50;
+}
+
+.ad-left { left: 10px; }
+.ad-right { right: 10px; }
+
+.ad-side a {
+  display: block;
+  width: 100%;
+}
+
+.ad-side img {
+  width: 100%;
+  height: 60vh;            /* ← makes it TALL (vertical) */
+  max-height: 500px;
+  min-height: 300px;
+  object-fit: cover;       /* ← keeps image vertical without squishing */
+  display: block;
+}
+
+/* Hide ads on mobile/tablet */
+@media (max-width: 1024px) {
+  .ad-side { display: none !important; }
+}
