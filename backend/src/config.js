@@ -22,7 +22,7 @@ const config = {
   downloadsDir:
     process.env.DOWNLOADS_DIR || path.join(os.homedir(), 'Downloads', 'yeti'),
 
-  ytdlpPath: process.env.YTDLP_PATH || 'yt-dlp',
+  ytdlpPath: process.env.YTDLP_PATH || './yt-dlp',
 
   maxConcurrentJobs: toInt(process.env.MAX_CONCURRENT_JOBS, 5),
 
