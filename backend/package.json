@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "postinstall": "echo 'Postinstall complete'"
+    "postinstall": "npm install -g yt-dlp"
   },
   "dependencies": {
     "cors": "^2.8.5",
